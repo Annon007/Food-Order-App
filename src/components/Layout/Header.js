@@ -11,7 +11,7 @@ const Header = () => {
             <HeaderButtonCart />
         </header>
         <div className={styles.mainImage}>
-            <img src={meals} />
+            <img src={meals}  alt="Table of food"/>
         </div>
     </>
 }
