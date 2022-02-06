@@ -2,7 +2,7 @@ import React from "react";
 import ReactDom from "react-dom";
 
 import styles from "./modal.module.css";
-const BackDrop=props=>{
+const BackDrop=()=>{
     return <div className={styles.backdrop}></div>
 }
 const ModalOverlay=props=>{
