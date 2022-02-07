@@ -21,8 +21,8 @@ const CartProvider = props => {
 
     };
     const initialValue = {
-        item: [],
-        totalAmount: 0,
+        item: cartState.item,
+        totalAmount: cartState.totalAmount,
         addItem: addNewItem,
         removeItem: removePrevItem
     }
