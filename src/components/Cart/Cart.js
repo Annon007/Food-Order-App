@@ -10,8 +10,8 @@ const Cart=props=>{
     const totalAmount = `$${cartCTX.totalAmount.toFixed(2)}`;
     const cartCheck = cartCTX.item.length>0;
 
-    const cartAddHandeler = () =>{
-
+    const cartAddHandeler = (item) =>{
+        cartCTX.addItem({...item, amount:1});
     };
     const cartRemoveHandeler = () =>{
 
@@ -30,7 +30,6 @@ const Cart=props=>{
         <div className={styles.actions}>
             <button className={styles.buttonAlt} onClick={props.onClose}>Close</button>
             {cartCheck && <button className={styles.button}>Order</button>}
-            
         </div>
     </Modal>
 }
