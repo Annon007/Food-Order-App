@@ -7,8 +7,11 @@ const CartReducer = (state, action) => {
         const uptadedItem = state.item[indexOfNewItemAdd];
         let updatedItemSet;
         if(uptadedItem) {
-            console.log("Need some logic to add nOw it is adding another item FIX ITT!!!");
-            updatedItemSet = [...state.item, action.item];
+            const updateActionItem = { ...uptadedItem, amount : uptadedItem.amount+action.item.amount} 
+            updatedItemSet = [...state.item];
+            updatedItemSet[indexOfNewItemAdd] = updateActionItem;
+            
+             
         } else {
             updatedItemSet = [...state.item, action.item];    
 
