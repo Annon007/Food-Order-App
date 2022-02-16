@@ -3,10 +3,20 @@ import CartContext from "./cart-contaxt";
 const CartReducer = (state, action) => {
    
     if (action.type === "ADD") {
-        const updatedItemSet = [...state.item, action.item];       
+        const indexOfNewItemAdd = state?.item.findIndex(item => item.id === action?.item?.id);
+        const uptadedItem = state.item[indexOfNewItemAdd];
+        let updatedItemSet;
+        if(uptadedItem) {
+            console.log("Need some logic to add nOw it is adding another item FIX ITT!!!");
+            updatedItemSet = [...state.item, action.item];
+        } else {
+            updatedItemSet = [...state.item, action.item];    
+
+        }
         const updateTotalAmount = updatedItemSet.reduce((acc, cur) =>{ 
             return acc + cur.price
-        }, 0)
+        }, 0);
+        
         return {
             item: [...updatedItemSet],
             totalAmount: updateTotalAmount
@@ -37,7 +47,7 @@ const CartProvider = props => {
 
     };
     const initialValue = {
-        item: cartState.item,
+        item: cartState?.item,
         totalAmount: cartState.totalAmount,
         addItem: addNewItem,
         removeItem: removePrevItem
