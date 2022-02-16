@@ -13,6 +13,7 @@ const MealItemForm = props => {
             setValidForm(true);
             return;
         }
+        // console.log(enteredAmountNumber)
         props.data(enteredAmountNumber);
     }
     return <form onSubmit={submittedForm} className={styles.form}>
@@ -23,7 +24,6 @@ const MealItemForm = props => {
             min: "1",
             max: "5",
             step: "1",
-            defaultValue: "1",
             name: "amount"
         }} />
         {validForm && <p>Invalid Input!</p>}

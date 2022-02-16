@@ -1,27 +1,30 @@
 import { useReducer } from "react";
 import CartContext from "./cart-contaxt";
 const CartReducer = (state, action) => {
+   
     if (action.type === "ADD") {
-        const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
-        const cartItemIndex = state.item.findIndex(item => item.id === action.item.id);
-        const existingItems = state.item[cartItemIndex];
-
-        let updatedItems;
-        if(existingItems){
-            const updateItem={
-                ...existingItems,
-                amount: existingItems.amount + action.item.amount
-            };
-            updatedItems = [...state.item];
-            updatedItems[cartItemIndex] = updateItem;
-        }else {
-            updatedItems = state.item.concat(action.item);
-        }
+        const updatedItemSet = [...state.item, action.item];       
+        const updateTotalAmount = updatedItemSet.reduce((acc, cur) =>{ 
+            return acc + cur.price
+        }, 0)
         return {
-            item: updatedItems,
-            totalAmount: updatedTotalAmount,
-        }
+            item: [...updatedItemSet],
+            totalAmount: updateTotalAmount
+        };
     }
+    // if (action.type === "REMOVE"){
+    //     const itemIndex = state.item.findIndex(item => item.id === action.id);
+    //     const removeItem = state.item[itemIndex];
+    //     const updatedAmount = state.item.totalAmount - removeItem.amount;
+    //     let filteredItem;
+    //     if( removeItem.amount < 1){
+    //         filteredItem = state.item.filter(item => item.id !== action.id)
+    //     } else {
+
+    //     }
+    // }
+    console.log(state.item)
+
     return { item: [], totalAmount: 0 }
 }
 const CartProvider = props => {

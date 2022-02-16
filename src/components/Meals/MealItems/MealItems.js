@@ -6,7 +6,7 @@ const MealItems = props => {
     const addingData = useContext(CartContext);
     const price = `$${props.price.toFixed(2)}`;
     const formData = data => {
-        // console.log(data)
+        console.log(data);
         addingData.addItem({
             id: props.id,
             price: props.price,
