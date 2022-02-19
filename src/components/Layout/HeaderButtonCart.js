@@ -3,6 +3,7 @@ import styles from "./headerButtonCart.module.css";
 import { Cart } from "../../assests/icons";
 
 import CartContext from "../../store/cart-contaxt";
+
 const HeaderButtonCart = props => {
     const [btnHighlight, setBtnHighlight] = useState(false);
     const cartContext = useContext(CartContext);
@@ -24,7 +25,7 @@ const HeaderButtonCart = props => {
             clearTimeout(timer);
         }
     }, [item]);
-    
+
     return <button onClick={() => props.onShowCart()} className={btnAnnimation}>
         <span className={styles.icon}>{Cart}</span>
         <span>Your Cart</span>
