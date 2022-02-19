@@ -10,7 +10,9 @@ const HeaderButtonCart = props => {
         return acc + cur.amount;
     }, 0);
     const { item } = cartContext;
-    const btnAnnimation = `${styles.button} ${btnHighlight ? styles.bump : ""}`
+
+    const btnAnnimation = `${styles.button} ${btnHighlight ? styles.bump : ""}`;
+
     useEffect(() => {
         if (item.length === 0) return;
         setBtnHighlight(true);
@@ -21,7 +23,8 @@ const HeaderButtonCart = props => {
         return () => {
             clearTimeout(timer);
         }
-    }, [item])
+    }, [item]);
+    
     return <button onClick={() => props.onShowCart()} className={btnAnnimation}>
         <span className={styles.icon}>{Cart}</span>
         <span>Your Cart</span>

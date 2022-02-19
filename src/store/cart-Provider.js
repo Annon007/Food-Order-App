@@ -33,12 +33,9 @@ const CartReducer = (state, action) => {
         const updateTotalMount = Math.abs(state.totalAmount - removeItem.price);
         let updatedItemSet;
         if (removeItem.amount === 1) {
-            console.log("Here");
             const getRemoveItem = state.item.filter(item => item.id !== action.id)
             updatedItemSet = [...getRemoveItem];
         } else {
-            console.log("Here else");
-
             const updateItem = { ...removeItem, amount: removeItem.amount - 1 };
             state.item[itemIndex] = updateItem
             updatedItemSet = [...state.item];
