@@ -7,7 +7,7 @@ const MealItemForm = props => {
     const [validForm, setValidForm] = useState(false);
     const submittedForm = e => {
         e.preventDefault();
-        const enteredAmount = amountInput.current.value;
+        let enteredAmount = amountInput.current.value;
         const enteredAmountNumber = +amountInput.current.value;
         if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
             setValidForm(true);
@@ -15,6 +15,7 @@ const MealItemForm = props => {
         }
         // console.log(enteredAmountNumber)
         props.data(enteredAmountNumber);
+        e.target.reset();
     }
     return <form onSubmit={submittedForm} className={styles.form}>
         <Input label="Amount" ref={amountInput} input={{
