@@ -46,21 +46,14 @@ const CartReducer = (state, action) => {
         }
     }
 
-    // if (action.type === "REMOVE"){
-    //     const itemIndex = state.item.findIndex(item => item.id === action.id);
-    //     const removeItem = state.item[itemIndex];
-    //     const updatedAmount = state.item.totalAmount - removeItem.amount;
-    //     let filteredItem;
-    //     if( removeItem.amount < 1){
-    //         filteredItem = state.item.filter(item => item.id !== action.id)
-    //     } else {
-
-    //     }
-    // }
+    if (action.type === "CLEAR") {
+        return { item: [], totalAmount: 0 }
+    }
     console.log(state.item)
 
     return { item: [], totalAmount: 0 }
 }
+
 const CartProvider = props => {
     const [cartState, dispatchCart] = useReducer(CartReducer, { item: [], totalAmount: 0 })
     const addNewItem = item => {
@@ -70,11 +63,15 @@ const CartProvider = props => {
         dispatchCart({ type: "DELETE", id: id });
 
     };
+    const ClearCartHandeler = () => {
+        dispatchCart({ type: "CLEAR" });
+    }
     const initialValue = {
         item: cartState?.item,
         totalAmount: cartState.totalAmount,
         addItem: addNewItem,
-        removeItem: removePrevItem
+        removeItem: removePrevItem,
+        clearCart: ClearCartHandeler
     }
     return <CartContext.Provider value={initialValue}>
         {props.children}
